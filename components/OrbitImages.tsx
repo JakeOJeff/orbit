@@ -119,6 +119,7 @@ function generateWavePath(cx: number, cy: number, w: number, amplitude: number, 
 }
 
 function OrbitItem({ item, index, totalItems, path, itemSize, rotation, progress, fill }: OrbitItemProps) {
+  const [isHovered, setIsHovered] = useState(false);
   const itemOffset = fill ? (index / totalItems) * 100 : 0;
 
   const offsetDistance = useTransform(progress, (p: number) => {
@@ -128,7 +129,7 @@ function OrbitItem({ item, index, totalItems, path, itemSize, rotation, progress
 
   return (
     <motion.div
-      className="absolute will-change-transform select-none"
+      className="absolute will-change-transform select-none cursor-pointer"
       style={{
         width: itemSize,
         height: itemSize,
@@ -136,9 +137,24 @@ function OrbitItem({ item, index, totalItems, path, itemSize, rotation, progress
         offsetRotate: '0deg',
         offsetAnchor: 'center center',
         offsetDistance,
+        zIndex: isHovered ? 50 : 1,
       }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
     >
-      <div style={{ transform: `rotate(${-rotation}deg)` }}>{item}</div>
+      <motion.div
+        style={{ transform: `rotate(${-rotation}deg)` }}
+        animate={{
+          scale: isHovered ? 2 : 1,
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 300,
+          damping: 20,
+        }}
+      >
+        {item}
+      </motion.div>
     </motion.div>
   );
 }
