@@ -10,7 +10,10 @@ export default function Home() {
           <div className="flex items-center justify-center">      {/* Temporary placeholder */}
             {/* <h1 className="text-9xl">Orbit</h1> */}
             <Image alt="orbit-logo" src="/logo.png" width={0} height={0} sizes="100vw" className="w-auto h-auto" />          </div>
+
           <div className="flex flex-col items-center justify-center">
+            <h4 className="text-xl text-[#EBDFCE] mb-3">from june 4th till 29th, 2026</h4>
+
             <a className="bg-[#006898] hover:bg-[#204B65] font-(family-name:--font-lora) transition-all duration-300 ease-in-out rounded-4xl p-6 py-4 text-3xl" href="fillout.com">Submit</a>
             <a className="text-[#EBDFCE] text- xl my-3" href="#about">..learn more?</a>
 
@@ -25,21 +28,49 @@ export default function Home() {
             or space simulation where physics is the core mechanic and drives everything.
             In return, they get a magnetic levitation globe shipped to them!</p>
         </div>
-        <div className="grid grid-cols-2 my-10 gap-20">
-          <div className="border rounded-4xl p-10">
-            <h1 className="text-3xl font-semibold mb-4">Valid Examples</h1>
-            <ul className="space-y-2">
+        <div className="grid grid-cols-2 my-10 gap-10">
+          <div className="border-4 transition-all duration-300 rounded-4xl p-10 hover:border-[#EBDFCE]">
+            <h1 className="text-3xl mb-4 font-(family-name:--font-baumans) font-semibold ">Valid Examples</h1>
+            <ul className="space-y-2 text-xl font-(family-name:--font-lora)">
               <li className="flex items-center gap-2">
-                <span className="">✓</span> A, B, C
+                <span className="">✓</span> N-body gravity simulator where planets orbit each other
               </li>
               <li className="flex items-center gap-2">
-                <span className="">✓</span> D, E, F
+                <span className="">✓</span> Black hole simulation and object spaghettification
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="">✓</span> Solar System sandboxes
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="">✓</span> Fluid Simulation driven by gravitational pressure
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="">✓</span> Game where core mechanic is gravity manipulation
               </li>
             </ul>
           </div>
-          <div className="border rounded-4xl p-10">
-            yes
+          <div className="border-4 transition-all duration-300 rounded-4xl p-10 hover:border-[#EBDFCE]">
+            <h1 className="text-3xl mb-4 font-(family-name:--font-baumans) font-semibold ">Invalid Examples</h1>
+            <ul className="space-y-2 text-xl font-(family-name:--font-lora)">
+              <li className="flex items-center gap-2">
+                <span className="">χ</span> Platformer with gravity
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="">χ</span> Game/Software where removing gravity won’t break the core mechanic
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="">χ</span> Space themed software/games which no actual physics simulation
+              </li>
+
+            </ul>
           </div>
+        </div>
+      </section>
+
+      <section id="rewards" className="bg-[#EBDFCE] flex flex-col items-center justify-center min-h-screen w-full">
+        <div className="mx-70 items-center justify-center flex flex-col">
+          <h3 className="text-7xl text-[#CE1921] font-(family-name:--font-baumans) font-bold ">rewards!</h3>
+
         </div>
       </section>
     </>
