@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <img
             src="https://assets.hackclub.com/flag-orpheus-left.svg"
             alt="Hack Club"
-            className="w-60 h-auto"
+            className="w-25 sm:w-50 h-auto"
           />
         </div>
         {children}
