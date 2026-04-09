@@ -9,13 +9,17 @@ export default function Home() {
           </div>
           <div className="flex items-center justify-center">      {/* Temporary placeholder */}
             {/* <h1 className="text-9xl">Orbit</h1> */}
-            <Image alt="orbit-logo " width={800} height={300} src="/logo.png"/>
-          </div>
-          <div className="flex items-center justify-center">
-            <a className="bg-[#006898] hover:bg-[#204B65] transition-all duration-200 ease-in-out rounded-2xl p-3 py-2 text-3xl" href="fillout.com">Submit</a>
-          </div>
+            <Image alt="orbit-logo" src="/logo.png" width={0} height={0} sizes="100vw" className="w-auto h-auto" />          </div>
+            <div className="flex flex-col items-center justify-center">
+              <a className="bg-[#006898] hover:bg-[#204B65] font-(family-name:--font-lora) transition-all duration-300 ease-in-out rounded-4xl p-6 py-4 text-3xl" href="fillout.com">Submit</a>
+              <a className="text-[#EBDFCE] text- xl my-3" href="#about">..learn more?</a>
+
+            </div>
         </div>
       </main>
+      <section id="about" className="bg-[#204B65] flex flex-col items-center justify-center min-h-screen w-full">
+        
+      </section>
     </>
 
   );
