@@ -22,7 +22,7 @@ export default function Home() {
       </main>
       <section id="about" className="bg-[#204B65] flex flex-col items-center justify-center min-h-screen w-full">
         <div className="mx-70 items-center justify-center flex flex-col">
-          <h3 className="text-7xl font-(family-name:--font-baumans) font-bold ">what is orbit?</h3>
+          <h3 className="text-7xl font-(family-name:--font-baumans) font-bold text-white ">what is orbit?</h3>
           <p className="text-2xl font-(family-name:--font-lora)">Orbit is a You Ship, We Ship where highschoolers can create a
             software application, web application or a game which is a gravity
             or space simulation where physics is the core mechanic and drives everything.
@@ -71,6 +71,14 @@ export default function Home() {
         <div className="mx-70 items-center justify-center flex flex-col">
           <h3 className="text-7xl text-[#CE1921] font-(family-name:--font-baumans) font-bold ">rewards!</h3>
 
+        </div>
+        <div className="grid grid-cols-2 my-10 gap-10">
+          <div className="bg-[#63A7B2] p-30 rounded-4xl rotate-3 transition-all duration-300 hover:rotate-0">
+            <Image alt="globe-prize" src="/prize.png" width={300} height={300} />
+          </div>
+          <div className="bg-[#63A7B2] p-30 rounded-4xl -rotate-3 transition-all duration-300 hover:rotate-0">
+
+          </div>
         </div>
       </section>
     </>
