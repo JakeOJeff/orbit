@@ -4,12 +4,12 @@ import Image from "next/image";
 import OrbitImages from '@/components/OrbitImages'
 
 const images = [
-  "https://picsum.photos/300/300?grayscale&random=1",
-  "https://picsum.photos/300/300?grayscale&random=2",
-  "https://picsum.photos/300/300?grayscale&random=3",
-  "https://picsum.photos/300/300?grayscale&random=4",
-  "https://picsum.photos/300/300?grayscale&random=5",
-  "https://picsum.photos/300/300?grayscale&random=6",
+  "https://raw.githubusercontent.com/hidoya/ap-physics-simulation/master/screenshot/grav-sim-screenshot.png",
+  "https://testtubegames.com/Images/OGImages/Gravity_OG.png",
+  "https://external-preview.redd.it/i-made-a-gravity-field-visualization-mode-for-my-v0-dGUwMnVwZzl6eGJnMcwRfYxX085qFrFsn6gApmqa7Od_dP2NJrTvOmEELMx_.png?width=1080&crop=smart&format=pjpg&auto=webp&s=c374910f668269b821f0d6eec99d7711d3771516",
+  "https://www.testtubegames.com/gsim101/images/fullpage2/GravitySimulator_142.png",
+  "https://www.gravitasim.com/img/pict1.png",
+  "https://raw.githubusercontent.com/DylanCope/Gravity-Simulator/master/screenshot.png",
 ];
 export default function Home() {
   return (
@@ -32,9 +32,9 @@ export default function Home() {
 
       <section id="about" className="bg-[#204B65] flex flex-col items-center justify-center min-h-screen w-full px-4 py-16">
         <div className="w-full max-w-4xl items-center justify-center flex flex-col">
-          <h3 className="text-5xl text-white sm:text-7xl md:text-8xl font-(family-name:--font-baumans) font-bold  text-center">what is orbit?
+          <h3 className="text-5xl text-[#EBDFCE] sm:text-7xl md:text-8xl font-(family-name:--font-baumans) font-bold  text-center">what is orbit?
           </h3>
-          <p className="text-base text-[#EBDFCE] sm:text-xl md:text-2xl font-(family-name:--font-lora) text-center mt-6">
+          <p className="text-base text-white sm:text-xl md:text-2xl font-(family-name:--font-lora) text-center mt-6">
             Orbit is a You Ship, We Ship where highschoolers can create a
             software application, web application or a game which is a gravity
             or space simulation where physics is the core mechanic and drives everything.
@@ -44,7 +44,7 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 my-10 gap-10 w-full max-w-4xl">
           <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
             <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">Valid Examples</h1>
-            <ul className="space-y-2 text-[#EBDFCE] text-base sm:text-xl font-(family-name:--font-lora)">
+            <ul className="space-y-2 text-white text-base sm:text-xl font-(family-name:--font-lora)">
               <li className="flex items-start gap-2">
                 <span className="mt-1">✓</span> N-body gravity simulator where planets orbit each other
               </li>
@@ -64,7 +64,7 @@ export default function Home() {
           </div>
           <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
             <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">Invalid Examples</h1>
-            <ul className="space-y-2 text-base text-[#EBDFCE] sm:text-xl font-(family-name:--font-lora)">
+            <ul className="space-y-2 text-base text-white sm:text-xl font-(family-name:--font-lora)">
               <li className="flex items-start  gap-2">
                 <span className="mt-1">✗</span> Platformer with gravity
               </li>
@@ -79,15 +79,15 @@ export default function Home() {
 
         </div>
         <div className="w-full max-w-4xl">
-          <div className="relative h-[250px] flex items-center justify-center">
+          <div className="relative h-[200px] flex items-center justify-center">
             <OrbitImages
               images={images}
               shape="ellipse"
               radiusX={300}
               radiusY={80}
               rotation={-10}
-              duration={30}
-              itemSize={64}
+              duration={40}
+              itemSize={80}
               responsive={true}
               direction="normal"
               fill
