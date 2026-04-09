@@ -120,6 +120,47 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section id="faq" className="bg-[#204B65] flex flex-col items-center justify-center min-h-screen w-full px-4 py-16">
+        <div className="w-full max-w-4xl items-center justify-center flex flex-col">
+          <h3 className="text-5xl sm:text-7xl md:text-8xl text-white font-(family-name:--font-baumans) font-bold">faq</h3>
+          <p className="text-base sm:text-xl md:text-2xl text-white font-(family-name:--font-lora) text-center mt-4">
+            Some commonly asked questions. Please read this before further checking out new stuff. Ping or message in the help channel for anything
+            not answered here!
+          </p>
+        </div>
+
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 my-10 gap-2 w-full max-w-4xl">
+          <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">whats the cost?</h1>
+            <p className="text-white font-(family-name:--font-lora)">it is completely free to participate and get prizes!</p>
+          </div>
+          <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">what counts as a ship?</h1>
+            <p className="text-white font-(family-name:--font-lora)">your Ship should have a public github repo, a live playable link, downloadable binary, etc</p>
+          </div>
+          <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">who can participate?</h1>
+            <p className="text-white font-(family-name:--font-lora)">students and teenagers aged 13-18 can participate!</p>
+          </div>
+          <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">what can i make?</h1>
+            <p className="text-white font-(family-name:--font-lora)">you can make any project that you like as long as physics is the core mechanic, cc: <a className="underline hover:text-[#EBDFCE] transition-all duration-300" href="/#about">examples</a></p>
+          </div>
+          <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">whats the cost?</h1>
+            <p className="text-white font-(family-name:--font-lora)">it is completely free to participate and get prizes!</p>
+          </div>
+          <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">whats the cost?</h1>
+            <p className="text-white font-(family-name:--font-lora)">it is completely free to participate and get prizes!</p>
+          </div>
+
+
+        </div>
+      </section>
+
     </>
   );
 }
