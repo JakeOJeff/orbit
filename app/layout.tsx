@@ -39,7 +39,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/#rewards" className="border-[#006898] text-white bg-transparent transition-all duration-300 hover:border-[#204B65] hover:bg-[#006898] border-2  p-4 py-2 text-2xl font-(family-name:--font-lora) rounded-4xl">
                 rewards
               </a>
-
+              <a href="/#faq" className="border-[#006898] text-white bg-transparent transition-all duration-300 hover:border-[#204B65] hover:bg-[#006898] border-2  p-4 py-2 text-2xl font-(family-name:--font-lora) rounded-4xl">
+                faq
+              </a>
             </div>
           </div>
         </nav>

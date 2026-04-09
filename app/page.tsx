@@ -146,15 +146,15 @@ export default function Home() {
           </div>
           <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
             <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">what can i make?</h1>
-            <p className="text-white font-(family-name:--font-lora)">you can make any project that you like as long as physics is the core mechanic, cc: <a className="underline hover:text-[#EBDFCE] transition-all duration-300" href="/#about">examples</a></p>
+            <p className="text-white font-(family-name:--font-lora)">you can make any project that you like as long as gravity is the core mechanic, cc: <a className="underline hover:text-[#EBDFCE] transition-all duration-300" href="/#about">examples</a></p>
           </div>
           <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
-            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">whats the cost?</h1>
-            <p className="text-white font-(family-name:--font-lora)">it is completely free to participate and get prizes!</p>
+                <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">how to get the bonus prize?</h1>
+            <p className="text-white font-(family-name:--font-lora)">work for an extra three hours and get the bonus prize {`(and maaaaybe a sticker too)`}</p>
           </div>
           <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
-            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">whats the cost?</h1>
-            <p className="text-white font-(family-name:--font-lora)">it is completely free to participate and get prizes!</p>
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">how many projects can i submit</h1>
+            <p className="text-white font-(family-name:--font-lora)">you can only submit one project, w/ bonus hours</p>
           </div>
 
 
