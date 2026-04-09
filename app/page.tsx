@@ -18,8 +18,12 @@ export default function Home() {
         </div>
       </main>
       <section id="about" className="bg-[#204B65] flex flex-col items-center justify-center min-h-screen w-full">
-        <div>
-
+        <div className="mx-50 items-center justify-center flex flex-col">
+          <h3 className="text-7xl font-(family-name:--font-baumans) font-bold ">what is orbit?</h3>
+          <p className="text-2xl font-(family-name:--font-">Orbit is a You Ship, We Ship where highschoolers can create a 
+            software application, web application or a game which is a gravity 
+            or space simulation where physics is the core mechanic and drives everything. 
+            In return, they get a magnetic levitation globe shipped to them!</p>
         </div>
         <div className="flex">
           <div className="border">
