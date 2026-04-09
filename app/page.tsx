@@ -3,6 +3,14 @@ export default function Home() {
   return (
     <>
       <main className="bg-[#010C15] flex flex-col items-center justify-center min-h-screen w-full">
+                <div className="absolute top-0 left-0 z-20">
+          <img 
+            src="https://assets.hackclub.com/flag-orpheus-left.svg" 
+            alt="Hack Club" 
+            className="w-60 h-auto"
+          />
+        </div>
+
         <div className=" items-center justify-center">
           <div className="flex items-center justify-center">
             <h4 className="text-xl text-[#EBDFCE]">simulate gravity, get gravity defied back on your desk</h4>
@@ -22,7 +30,7 @@ export default function Home() {
       </main>
       <section id="about" className="bg-[#204B65] flex flex-col items-center justify-center min-h-screen w-full">
         <div className="mx-70 items-center justify-center flex flex-col">
-          <h3 className="text-7xl font-(family-name:--font-baumans) font-bold text-white ">what is orbit?</h3>
+          <h3 className="text-8xl font-(family-name:--font-baumans) font-bold text-white ">what is orbit?</h3>
           <p className="text-2xl font-(family-name:--font-lora)">Orbit is a You Ship, We Ship where highschoolers can create a
             software application, web application or a game which is a gravity
             or space simulation where physics is the core mechanic and drives everything.
@@ -69,14 +77,20 @@ export default function Home() {
 
       <section id="rewards" className="bg-[#EBDFCE] flex flex-col items-center justify-center min-h-screen w-full">
         <div className="mx-70 items-center justify-center flex flex-col">
-          <h3 className="text-7xl text-[#CE1921] font-(family-name:--font-baumans) font-bold ">rewards!</h3>
+          <h3 className="text-8xl text-[#CE1921] font-(family-name:--font-baumans) font-bold ">rewards!</h3>
 
         </div>
         <div className="grid grid-cols-2 my-10 gap-10">
-          <div className="bg-[#63A7B2] p-30 rounded-4xl rotate-3 transition-all duration-300 hover:rotate-0">
+          <div className="bg-[#63A7B2] p-20 py-30 rounded-4xl rotate-3 transition-all duration-300 hover:rotate-0 justify-center items-center flex flex-col">
             <Image alt="globe-prize" src="/prize.png" width={300} height={300} />
+            <h3 className="text-6xl font-(family-name:--font-baumans) font-semibold">Levitating Globe</h3>
+            <h2 className="text-xl font-(family-name:--font-lora) text-[#">{`>= 10 hackatime hours`}</h2>
+
           </div>
-          <div className="bg-[#63A7B2] p-30 rounded-4xl -rotate-3 transition-all duration-300 hover:rotate-0">
+          <div className="bg-[#63A7B2] p-20 py-30 rounded-4xl -rotate-3 transition-all duration-300 hover:rotate-0 justify-center items-center flex flex-col">
+            <Image alt="globe-prize" src="/prize.png" width={300} height={300} />
+            <h3 className="text-6xl font-(family-name:--font-baumans) font-semibold">Levitating Globe</h3>
+            <h2 className="text-xl font-(family-name:--font-lora) text-[#">{`>= 10 hackatime hours`}</h2>
 
           </div>
         </div>
