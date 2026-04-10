@@ -17,7 +17,7 @@ export default function Home() {
       <main className="bg-[#010C15] flex flex-col items-center justify-center min-h-screen w-full px-4">
         <div className="items-center justify-center w-full max-w-4xl">
           <div className="flex items-center justify-center">
-            <h4 className="text-base sm:text-xl text-[#EBDFCE] text-center">simulate gravity, get gravity defied back on your desk</h4>
+            <h4 className="text-base sm:text-xl text-[#EBDFCE] text-center">simulate gravity, get a levitating globe</h4>
           </div>
           <div className="flex items-center justify-center">
             <Image alt="orbit-logo" src="/logo.png" width={0} height={0} sizes="100vw" className="w-auto h-auto max-w-xs sm:max-w-md md:max-w-lg" />
@@ -27,6 +27,16 @@ export default function Home() {
             <a className="bg-[#006898] hover:bg-[#204B65] font-(family-name:--font-lora) transition-all duration-300 ease-in-out rounded-4xl p-6 py-4 text-xl sm:text-3xl" href="fillout.com">Submit</a>
             <a className="text-[#EBDFCE] text-base sm:text-xl my-3" href="#about">..learn more?</a>
           </div>
+          <div className="absolute bottom-0 right-0 z-20">
+            <Image
+              src="/border-circles-1.png"
+              alt="Hack Club"
+              width = {0}
+              height = {0}
+              sizes="100vw"
+              className="w-100 h-auto max-w-xs sm:max-w-md md:max-w-lg"
+            />
+          </div>
         </div>
       </main>
 
@@ -35,9 +45,9 @@ export default function Home() {
           <h3 className="text-5xl text-[#EBDFCE] sm:text-7xl md:text-8xl font-(family-name:--font-baumans) font-bold  text-center">what is orbit?
           </h3>
           <p className="text-base text-white sm:text-xl md:text-2xl font-(family-name:--font-lora) text-center mt-6">
-            Orbit is a You Ship, We Ship where highschoolers can create a
-            software application, web application or a game which is a gravity
-            or space simulation where physics is the core mechanic and drives everything.
+            Orbit is a You Ship, We Ship where highschoolers create a
+            software, webapp or a game which simulates gravity
+            or space where physics is the core mechanic that drives everything.
             In return, they get a magnetic levitation globe shipped to them!
           </p>
         </div>
@@ -123,7 +133,7 @@ export default function Home() {
 
       <section id="faq" className="bg-[#204B65] flex flex-col items-center justify-center min-h-screen w-full px-4 py-16">
         <div className="w-full max-w-4xl items-center justify-center flex flex-col">
-          <h3 className="text-5xl sm:text-7xl md:text-8xl text-white font-(family-name:--font-baumans) font-bold">faq</h3>
+          <h3 className="text-5xl sm:text-7xl md:text-8xl text-[#EBDFCE] font-(family-name:--font-baumans) font-bold">faq</h3>
           <p className="text-base sm:text-xl md:text-2xl text-white font-(family-name:--font-lora) text-center mt-4">
             Some commonly asked questions. Please read this before further checking out new stuff. Ping or message in the help channel for anything
             not answered here!
@@ -149,17 +159,22 @@ export default function Home() {
             <p className="text-white font-(family-name:--font-lora)">you can make any project that you like as long as gravity is the core mechanic, cc: <a className="underline hover:text-[#EBDFCE] transition-all duration-300" href="/#about">examples</a></p>
           </div>
           <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
-                <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">how to get the bonus prize?</h1>
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">how to get the bonus prize?</h1>
             <p className="text-white font-(family-name:--font-lora)">work for an extra three hours and get the bonus prize {`(and maaaaybe a sticker too)`}</p>
           </div>
           <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE]">
-            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">how many projects can i submit</h1>
-            <p className="text-white font-(family-name:--font-lora)">you can only submit one project, w/ bonus hours</p>
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">how do i track hours?</h1>
+            <p className="text-white font-(family-name:--font-lora)">you can track hours in your IDE using <a className="underline hover:text-[#EBDFCE] duration-300 transition-all" href="https://hackatime.hackclub.com">hackatime</a></p>
           </div>
 
 
         </div>
       </section>
+
+      <div className="w-full h-[50px] bg-[#EBDFCE] items-center justify-center text-center">
+        <h4 className="font-(family-name:--font-baumans) text-[#010C15]">made with love by <a>JakeOJeff</a></h4>
+        <h4 className="font-(family-name:--font-baumans) text-[#010C15]">fellowship '26</h4>
+      </div>
 
     </>
   );
