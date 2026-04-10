@@ -173,7 +173,7 @@ export default function Home() {
 
       <div className="w-full h-[50px] bg-[#EBDFCE] items-center justify-center text-center">
         <h4 className="font-(family-name:--font-baumans) text-[#010C15]">made with love by <a>JakeOJeff</a></h4>
-        <h4 className="font-(family-name:--font-baumans) text-[#010C15]">fellowship '26</h4>
+        <h4 className="font-(family-name:--font-baumans) text-[#010C15]">fellowship '26 | 80's nasa <a href="https://archive.org/details/C-1984-5793" className="underline hover:text-[#204B65] transition-all duration-300" >program</a> palette</h4>
       </div>
 
     </>
