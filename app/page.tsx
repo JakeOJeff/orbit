@@ -59,13 +59,13 @@ export default function Home() {
                   stroke="#006898"
                   strokeWidth="6"
                   strokeDasharray="28 14"
-                  style={{ transformOrigin: '220px 220px', animation: 'spin-cw 12s linear infinite' }}
+                  style={{ transformOrigin: '220px 220px', animation: 'spin-cw 32s linear infinite' }}
                 />
                 {/* Planet on outer ring */}
-                <g style={{ transformOrigin: '220px 220px', animation: 'spin-cw 24s linear infinite' }}>
+                <g style={{ transformOrigin: '220px 220px', animation: 'spin-cw 32s linear infinite' }}>
                   <circle cx="220" cy="40" r="10" fill="#006898" />
                   {/* Moon ring around planet */}
-                  <g style={{ transformOrigin: '220px 40px', animation: 'spin-ccw 2s linear infinite' }}>
+                  <g style={{ transformOrigin: '220px 40px', animation: 'spin-ccw 6s linear infinite' }}>
                     <circle cx="220" cy="40" r="18" fill="none" stroke="#EBDFCE" strokeWidth="1.5" strokeDasharray="4 3" />
                     <circle cx="220" cy="22" r="3.5" fill="#EBDFCE" />
                   </g>
@@ -78,7 +78,7 @@ export default function Home() {
                   stroke="#EBDFCE"
                   strokeWidth="2"
                   strokeDasharray="10 8"
-                  style={{ transformOrigin: '220px 220px', animation: 'spin-ccw 8s linear infinite' }}
+                  style={{ transformOrigin: '220px 220px', animation: 'spin-ccw 32s linear infinite' }}
                 />
               </g>
             </svg>
