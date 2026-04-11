@@ -1,20 +1,22 @@
+"use client"
+
 import { useMemo, useEffect, useRef, useState, ReactNode } from 'react';
 import { motion, useMotionValue, useTransform, animate, MotionValue } from 'motion/react';
 
 type OrbitShape =
-  | 'ellipse'
-  | 'circle'
-  | 'square'
-  | 'rectangle'
-  | 'triangle'
-  | 'star'
-  | 'heart'
-  | 'infinity'
-  | 'wave'
-  | 'custom';
+  | 'ellipse' | 'circle' | 'square' | 'rectangle'
+  | 'triangle' | 'star' | 'heart' | 'infinity' | 'wave' | 'custom';
+
+interface OrbitImageMeta {
+  src: string;
+  creator?: string;
+  creatorUrl?: string;
+  alt?: string;
+}
 
 interface OrbitImagesProps {
   images?: string[];
+  items?: OrbitImageMeta[];
   altPrefix?: string;
   shape?: OrbitShape;
   customPath?: string;
@@ -50,61 +52,48 @@ interface OrbitItemProps {
   rotation: number;
   progress: MotionValue<number>;
   fill: boolean;
+  onClick?: () => void;
 }
 
-function generateEllipsePath(cx: number, cy: number, rx: number, ry: number): string {
+// --- path generators (unchanged) ---
+function generateEllipsePath(cx: number, cy: number, rx: number, ry: number) {
   return `M ${cx - rx} ${cy} A ${rx} ${ry} 0 1 0 ${cx + rx} ${cy} A ${rx} ${ry} 0 1 0 ${cx - rx} ${cy}`;
 }
-
-function generateCirclePath(cx: number, cy: number, r: number): string {
+function generateCirclePath(cx: number, cy: number, r: number) {
   return generateEllipsePath(cx, cy, r, r);
 }
-
-function generateSquarePath(cx: number, cy: number, size: number): string {
+function generateSquarePath(cx: number, cy: number, size: number) {
   const h = size / 2;
   return `M ${cx - h} ${cy - h} L ${cx + h} ${cy - h} L ${cx + h} ${cy + h} L ${cx - h} ${cy + h} Z`;
 }
-
-function generateRectanglePath(cx: number, cy: number, w: number, h: number): string {
-  const hw = w / 2;
-  const hh = h / 2;
+function generateRectanglePath(cx: number, cy: number, w: number, h: number) {
+  const hw = w / 2; const hh = h / 2;
   return `M ${cx - hw} ${cy - hh} L ${cx + hw} ${cy - hh} L ${cx + hw} ${cy + hh} L ${cx - hw} ${cy + hh} Z`;
 }
-
-function generateTrianglePath(cx: number, cy: number, size: number): string {
-  const height = (size * Math.sqrt(3)) / 2;
-  const hs = size / 2;
+function generateTrianglePath(cx: number, cy: number, size: number) {
+  const height = (size * Math.sqrt(3)) / 2; const hs = size / 2;
   return `M ${cx} ${cy - height / 1.5} L ${cx + hs} ${cy + height / 3} L ${cx - hs} ${cy + height / 3} Z`;
 }
-
-function generateStarPath(cx: number, cy: number, outerR: number, innerR: number, points: number): string {
-  const step = Math.PI / points;
-  let path = '';
+function generateStarPath(cx: number, cy: number, outerR: number, innerR: number, points: number) {
+  const step = Math.PI / points; let path = '';
   for (let i = 0; i < 2 * points; i++) {
     const r = i % 2 === 0 ? outerR : innerR;
     const angle = i * step - Math.PI / 2;
-    const x = cx + r * Math.cos(angle);
-    const y = cy + r * Math.sin(angle);
+    const x = cx + r * Math.cos(angle); const y = cy + r * Math.sin(angle);
     path += i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`;
   }
   return path + ' Z';
 }
-
-function generateHeartPath(cx: number, cy: number, size: number): string {
+function generateHeartPath(cx: number, cy: number, size: number) {
   const s = size / 30;
   return `M ${cx} ${cy + 12 * s} C ${cx - 20 * s} ${cy - 5 * s}, ${cx - 12 * s} ${cy - 18 * s}, ${cx} ${cy - 8 * s} C ${cx + 12 * s} ${cy - 18 * s}, ${cx + 20 * s} ${cy - 5 * s}, ${cx} ${cy + 12 * s}`;
 }
-
-function generateInfinityPath(cx: number, cy: number, w: number, h: number): string {
-  const hw = w / 2;
-  const hh = h / 2;
+function generateInfinityPath(cx: number, cy: number, w: number, h: number) {
+  const hw = w / 2; const hh = h / 2;
   return `M ${cx} ${cy} C ${cx + hw * 0.5} ${cy - hh}, ${cx + hw} ${cy - hh}, ${cx + hw} ${cy} C ${cx + hw} ${cy + hh}, ${cx + hw * 0.5} ${cy + hh}, ${cx} ${cy} C ${cx - hw * 0.5} ${cy + hh}, ${cx - hw} ${cy + hh}, ${cx - hw} ${cy} C ${cx - hw} ${cy - hh}, ${cx - hw * 0.5} ${cy - hh}, ${cx} ${cy}`;
 }
-
-function generateWavePath(cx: number, cy: number, w: number, amplitude: number, waves: number): string {
-  const pts: string[] = [];
-  const segs = waves * 20;
-  const hw = w / 2;
+function generateWavePath(cx: number, cy: number, w: number, amplitude: number, waves: number) {
+  const pts: string[] = []; const segs = waves * 20; const hw = w / 2;
   for (let i = 0; i <= segs; i++) {
     const x = cx - hw + (w * i) / segs;
     const y = cy + Math.sin((i / segs) * waves * 2 * Math.PI) * amplitude;
@@ -118,7 +107,78 @@ function generateWavePath(cx: number, cy: number, w: number, amplitude: number, 
   return pts.join(' ') + ' Z';
 }
 
-function OrbitItem({ item, index, totalItems, path, itemSize, rotation, progress, fill }: OrbitItemProps) {
+// --- Lightbox ---
+interface LightboxProps {
+  meta: OrbitImageMeta;
+  onClose: () => void;
+}
+
+function Lightbox({ meta, onClose }: LightboxProps) {
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [onClose]);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[9999] flex items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+      style={{ background: 'rgba(0,0,0,0.85)' }}
+    >
+      <motion.div
+        className="relative max-w-3xl w-full mx-4 rounded-xl overflow-hidden"
+        initial={{ scale: 0.85, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.85, opacity: 0 }}
+        transition={{ type: 'spring', stiffness: 260, damping: 22 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          src={meta.src}
+          alt={meta.alt ?? 'Preview'}
+          className="w-full object-contain max-h-[70vh] bg-black"
+          draggable={false}
+        />
+
+        <div className="flex items-center justify-between px-4 py-3 bg-[#111] text-sm">
+          {meta.creator ? (
+            <span className="text-neutral-300">
+              by{' '}
+              {meta.creatorUrl ? (
+                <a
+                  href={meta.creatorUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white font-medium underline underline-offset-2 hover:text-neutral-200 transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {meta.creator}
+                </a>
+              ) : (
+                <span className="text-white font-medium">{meta.creator}</span>
+              )}
+            </span>
+          ) : (
+            <span />
+          )}
+
+          <button
+            onClick={onClose}
+            className="text-neutral-400 hover:text-white transition-colors text-xs tracking-wide uppercase"
+          >
+            Close ✕
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+// --- OrbitItem (with onClick) ---
+function OrbitItem({ item, index, totalItems, path, itemSize, rotation, progress, fill, onClick }: OrbitItemProps) {
   const [isHovered, setIsHovered] = useState(false);
   const itemOffset = fill ? (index / totalItems) * 100 : 0;
 
@@ -141,17 +201,12 @@ function OrbitItem({ item, index, totalItems, path, itemSize, rotation, progress
       }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
+      onClick={onClick}
     >
       <motion.div
         style={{ transform: `rotate(${-rotation}deg)` }}
-        animate={{
-          scale: isHovered ? 2 : 1,
-        }}
-        transition={{
-          type: 'spring',
-          stiffness: 300,
-          damping: 20,
-        }}
+        animate={{ scale: isHovered ? 2 : 1 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         {item}
       </motion.div>
@@ -159,8 +214,10 @@ function OrbitItem({ item, index, totalItems, path, itemSize, rotation, progress
   );
 }
 
+// --- Main component ---
 export default function OrbitImages({
   images = [],
+  items,
   altPrefix = 'Orbiting image',
   shape = 'ellipse',
   customPath,
@@ -188,34 +245,28 @@ export default function OrbitImages({
 }: OrbitImagesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
+  const [activeMeta, setActiveMeta] = useState<OrbitImageMeta | null>(null);
+
+  // Normalise: support both `images` (string[]) and `items` (OrbitImageMeta[])
+  const resolvedItems: OrbitImageMeta[] = items
+    ?? images.map((src) => ({ src }));
 
   const designCenterX = baseWidth / 2;
   const designCenterY = baseWidth / 2;
 
   const path = useMemo(() => {
     switch (shape) {
-      case 'circle':
-        return generateCirclePath(designCenterX, designCenterY, radius);
-      case 'ellipse':
-        return generateEllipsePath(designCenterX, designCenterY, radiusX, radiusY);
-      case 'square':
-        return generateSquarePath(designCenterX, designCenterY, radius * 2);
-      case 'rectangle':
-        return generateRectanglePath(designCenterX, designCenterY, radiusX * 2, radiusY * 2);
-      case 'triangle':
-        return generateTrianglePath(designCenterX, designCenterY, radius * 2);
-      case 'star':
-        return generateStarPath(designCenterX, designCenterY, radius, radius * starInnerRatio, starPoints);
-      case 'heart':
-        return generateHeartPath(designCenterX, designCenterY, radius * 2);
-      case 'infinity':
-        return generateInfinityPath(designCenterX, designCenterY, radiusX * 2, radiusY * 2);
-      case 'wave':
-        return generateWavePath(designCenterX, designCenterY, radiusX * 2, radiusY, 3);
-      case 'custom':
-        return customPath || generateCirclePath(designCenterX, designCenterY, radius);
-      default:
-        return generateEllipsePath(designCenterX, designCenterY, radiusX, radiusY);
+      case 'circle': return generateCirclePath(designCenterX, designCenterY, radius);
+      case 'ellipse': return generateEllipsePath(designCenterX, designCenterY, radiusX, radiusY);
+      case 'square': return generateSquarePath(designCenterX, designCenterY, radius * 2);
+      case 'rectangle': return generateRectanglePath(designCenterX, designCenterY, radiusX * 2, radiusY * 2);
+      case 'triangle': return generateTrianglePath(designCenterX, designCenterY, radius * 2);
+      case 'star': return generateStarPath(designCenterX, designCenterY, radius, radius * starInnerRatio, starPoints);
+      case 'heart': return generateHeartPath(designCenterX, designCenterY, radius * 2);
+      case 'infinity': return generateInfinityPath(designCenterX, designCenterY, radiusX * 2, radiusY * 2);
+      case 'wave': return generateWavePath(designCenterX, designCenterY, radiusX * 2, radiusY, 3);
+      case 'custom': return customPath || generateCirclePath(designCenterX, designCenterY, radius);
+      default: return generateEllipsePath(designCenterX, designCenterY, radiusX, radiusY);
     }
   }, [shape, customPath, designCenterX, designCenterY, radiusX, radiusY, radius, starPoints, starInnerRatio]);
 
@@ -236,10 +287,7 @@ export default function OrbitImages({
   useEffect(() => {
     if (paused) return;
     const controls = animate(progress, direction === 'reverse' ? -100 : 100, {
-      duration,
-      ease: easing,
-      repeat: Infinity,
-      repeatType: 'loop',
+      duration, ease: easing, repeat: Infinity, repeatType: 'loop',
     });
     return () => controls.stop();
   }, [progress, duration, easing, direction, paused]);
@@ -247,75 +295,72 @@ export default function OrbitImages({
   const containerWidth = responsive ? '100%' : (typeof width === 'number' ? width : '100%');
   const containerHeight = responsive ? 'auto' : (typeof height === 'number' ? height : (typeof width === 'number' ? width : 'auto'));
 
-  const items = images.map((src, index) => (
-    <img
-      key={src}
-      src={src}
-      alt={`${altPrefix} ${index + 1}`}
-      draggable={false}
-      className="w-full h-full object-contain"
-    />
-  ));
-
   return (
-    <div
-      ref={containerRef}
-      className={`relative mx-auto ${className}`}
-      style={{
-        width: containerWidth,
-        height: containerHeight,
-        aspectRatio: responsive ? '1 / 1' : undefined,
-      }}
-      aria-hidden="true"
-    >
+    <>
+      {/* Lightbox — rendered outside the orbit container so z-index works */}
+      {activeMeta && (
+        <Lightbox meta={activeMeta} onClose={() => setActiveMeta(null)} />
+      )}
+
       <div
-        className={responsive ? 'absolute left-1/2 top-1/2' : 'relative w-full h-full'}
-        style={{
-          width: responsive ? baseWidth : '100%',
-          height: responsive ? baseWidth : '100%',
-          transform: responsive ? `translate(-50%, -50%) scale(${scale})` : undefined,
-          transformOrigin: 'center center',
-        }}
+        ref={containerRef}
+        className={`relative mx-auto ${className}`}
+        style={{ width: containerWidth, height: containerHeight, aspectRatio: responsive ? '1 / 1' : undefined }}
+        aria-hidden="true"
       >
         <div
-          className="relative w-full h-full"
+          className={responsive ? 'absolute left-1/2 top-1/2' : 'relative w-full h-full'}
           style={{
-            transform: `rotate(${rotation}deg)`,
+            width: responsive ? baseWidth : '100%',
+            height: responsive ? baseWidth : '100%',
+            transform: responsive ? `translate(-50%, -50%) scale(${scale})` : undefined,
             transformOrigin: 'center center',
           }}
         >
-          {showPath && (
-            <svg
-              width="100%"
-              height="100%"
-              viewBox={`0 0 ${baseWidth} ${baseWidth}`}
-              className="absolute inset-0 pointer-events-none"
-            >
-              <path d={path} fill="none" stroke={pathColor} strokeWidth={pathWidth / scale} />
-            </svg>
-          )}
+          <div
+            className="relative w-full h-full"
+            style={{ transform: `rotate(${rotation}deg)`, transformOrigin: 'center center' }}
+          >
+            {showPath && (
+              <svg
+                width="100%" height="100%"
+                viewBox={`0 0 ${baseWidth} ${baseWidth}`}
+                className="absolute inset-0 pointer-events-none"
+              >
+                <path d={path} fill="none" stroke={pathColor} strokeWidth={pathWidth / scale} />
+              </svg>
+            )}
 
-          {items.map((item, index) => (
-            <OrbitItem
-              key={index}
-              item={item}
-              index={index}
-              totalItems={items.length}
-              path={path}
-              itemSize={itemSize}
-              rotation={rotation}
-              progress={progress}
-              fill={fill}
-            />
-          ))}
+            {resolvedItems.map((meta, index) => (
+              <OrbitItem
+                key={meta.src + index}
+                item={
+                  <img
+                    src={meta.src}
+                    alt={meta.alt ?? `${altPrefix} ${index + 1}`}
+                    draggable={false}
+                    className="w-full h-full object-contain"
+                  />
+                }
+                index={index}
+                totalItems={resolvedItems.length}
+                path={path}
+                itemSize={itemSize}
+                rotation={rotation}
+                progress={progress}
+                fill={fill}
+                onClick={() => setActiveMeta(meta)}
+              />
+            ))}
+          </div>
         </div>
+
+        {centerContent && (
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+            {centerContent}
+          </div>
+        )}
       </div>
-
-      {centerContent && (
-        <div className="absolute inset-0 flex items-center justify-center z-10">
-          {centerContent}
-        </div>
-      )}
-    </div>
+    </>
   );
 }

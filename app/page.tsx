@@ -6,10 +6,39 @@ import OrbitImages from '@/components/OrbitImages'
 const images = [
   "https://raw.githubusercontent.com/hidoya/ap-physics-simulation/master/screenshot/grav-sim-screenshot.png",
   "https://testtubegames.com/Images/OGImages/Gravity_OG.png",
-  "https://external-preview.redd.it/i-made-a-gravity-field-visualization-mode-for-my-v0-dGUwMnVwZzl6eGJnMcwRfYxX085qFrFsn6gApmqa7Od_dP2NJrTvOmEELMx_.png?width=1080&crop=smart&format=pjpg&auto=webp&s=c374910f668269b821f0d6eec99d7711d3771516",
+  // "https://external-preview.redd.it/i-made-a-gravity-field-visualization-mode-for-my-v0-dGUwMnVwZzl6eGJnMcwRfYxX085qFrFsn6gApmqa7Od_dP2NJrTvOmEELMx_.png?width=1080&crop=smart&format=pjpg&auto=webp&s=c374910f668269b821f0d6eec99d7711d3771516",
   "https://www.testtubegames.com/gsim101/images/fullpage2/GravitySimulator_142.png",
   "https://www.gravitasim.com/img/pict1.png",
   "https://raw.githubusercontent.com/DylanCope/Gravity-Simulator/master/screenshot.png",
+];
+const items = [
+  {
+    src: "https://raw.githubusercontent.com/hidoya/ap-physics-simulation/master/screenshot/grav-sim-screenshot.png",
+    creator: "hidoya",
+    creatorUrl: "https://github.com/hidoya/ap-physics-simulation",
+  },
+  {
+    src: "https://testtubegames.com/Images/OGImages/Gravity_OG.png",
+    creator: "TestTubeGames",
+    creatorUrl: "https://testtubegames.com",
+  },
+    {
+    src: "https://www.testtubegames.com/gsim101/images/fullpage2/GravitySimulator_142.png",
+    creator: "TestTubeGames",
+    creatorUrl: "https://testtubegames.com",
+  },
+  {
+    src: "https://www.gravitasim.com/img/pict1.png",
+    creator: "GravitaSim",
+    creatorUrl: "https://www.gravitasim.com",
+
+  },
+  {
+    src: "https://raw.githubusercontent.com/DylanCope/Gravity-Simulator/master/screenshot.png",
+    creator: "DylanCope",
+    creatorUrl: "https://github.com/DylanCope/Gravity-Simulator",
+    
+  },
 ];
 export default function Home() {
   return (
@@ -25,7 +54,7 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center">
             <h4 className="text-base sm:text-xl text-[#EBDFCE] mb-3 text-center">from june 4th till 29th, 2026</h4>
             <a className="bg-[#006898] hover:bg-[#004b6e] text-[#010C15] hover:text-[#368dd4] font-(family-name:--font-lora) transition-all duration-300 ease-in-out rounded-4xl p-6 py-4 text-xl sm:text-3xl" href="fillout.com">Submit</a>
-            <a className="text-[#EBDFCE] text-base sm:text-xl my-3" href="#about">..learn more?</a>
+            <a className="text-[#EBDFCE] hover:text-[#f8ead8] underline underline-offset-6 decoration-1 decoration-2 decoration-transparent hover:decoration-[#f8ead8] transition-all duration-300 text-base sm:text-xl my-3" href="#about">..learn more?</a>
           </div>
           {/* <div className="absolute bottom-0 right-0 z-20">
             <Image
@@ -137,7 +166,7 @@ export default function Home() {
         <div className="w-full max-w-4xl">
           <div className="relative h-[200px] flex items-center justify-center">
             <OrbitImages
-              images={images}
+              items={items}
               shape="ellipse"
               radiusX={300}
               radiusY={80}
