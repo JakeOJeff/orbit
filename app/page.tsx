@@ -27,13 +27,61 @@ export default function Home() {
             <a className="bg-[#006898] hover:bg-[#004b6e] text-[#010C15] hover:text-[#368dd4] font-(family-name:--font-lora) transition-all duration-300 ease-in-out rounded-4xl p-6 py-4 text-xl sm:text-3xl" href="fillout.com">Submit</a>
             <a className="text-[#EBDFCE] text-base sm:text-xl my-3" href="#about">..learn more?</a>
           </div>
-          <div className="absolute bottom-0 right-0 z-20">
+          {/* <div className="absolute bottom-0 right-0 z-20">
             <Image
               src="/border-circles-1.png"
               alt="Hack Club"
               width = {200}
               height = {200}
             />
+          </div> */}
+          <div className="absolute bottom-0 right-0 z-20" style={{ width: 220, height: 220 }}>
+            <style>{`
+    @keyframes spin-cw { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spin-ccw { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+    @keyframes spin-cw-fast { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  `}</style>
+            <svg
+              width="220"
+              height="220"
+              viewBox="0 0 220 220"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ overflow: 'visible', position: 'absolute', bottom: 0, right: 0 }}
+            >
+              <clipPath id="corner-clip">
+                <rect x="0" y="0" width="220" height="220" />
+              </clipPath>
+              <g clipPath="url(#corner-clip)">
+                {/* Outer orbit ring */}
+                <circle
+                  cx="220" cy="220" r="180"
+                  fill="none"
+                  stroke="#006898"
+                  strokeWidth="6"
+                  strokeDasharray="28 14"
+                  style={{ transformOrigin: '220px 220px', animation: 'spin-cw 12s linear infinite' }}
+                />
+                {/* Planet on outer ring */}
+                <g style={{ transformOrigin: '220px 220px', animation: 'spin-cw 24s linear infinite' }}>
+                  <circle cx="220" cy="40" r="10" fill="#006898" />
+                  {/* Moon ring around planet */}
+                  <g style={{ transformOrigin: '220px 40px', animation: 'spin-ccw 2s linear infinite' }}>
+                    <circle cx="220" cy="40" r="18" fill="none" stroke="#EBDFCE" strokeWidth="1.5" strokeDasharray="4 3" />
+                    <circle cx="220" cy="22" r="3.5" fill="#EBDFCE" />
+                  </g>
+                </g>
+
+                {/* Inner orbit ring */}
+                <circle
+                  cx="220" cy="220" r="110"
+                  fill="none"
+                  stroke="#EBDFCE"
+                  strokeWidth="2"
+                  strokeDasharray="10 8"
+                  style={{ transformOrigin: '220px 220px', animation: 'spin-ccw 8s linear infinite' }}
+                />
+              </g>
+            </svg>
           </div>
         </div>
       </main>
@@ -139,32 +187,32 @@ export default function Home() {
         </div>
 
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 my-10 gap-2 w-full max-w-4xl">
-        <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE] hover:-translate-y-2 hover:[box-shadow:0_8px_30px_rgba(235,223,206,0.15)]">
-          <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">whats the cost?</h1>
-          <p className="text-white font-(family-name:--font-lora)">it is completely free to participate and get prizes!</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 my-10 gap-2 w-full max-w-4xl">
+          <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE] hover:-translate-y-2 hover:[box-shadow:0_8px_30px_rgba(235,223,206,0.15)]">
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">whats the cost?</h1>
+            <p className="text-white font-(family-name:--font-lora)">it is completely free to participate and get prizes!</p>
+          </div>
+          <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE] hover:-translate-y-2 hover:[box-shadow:0_8px_30px_rgba(235,223,206,0.15)]">
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">what counts as a ship?</h1>
+            <p className="text-white font-(family-name:--font-lora)">your Ship should have a public github repo, a live playable link, downloadable binary, etc</p>
+          </div>
+          <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE] hover:-translate-y-2 hover:[box-shadow:0_8px_30px_rgba(235,223,206,0.15)]">
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">who can participate?</h1>
+            <p className="text-white font-(family-name:--font-lora)">students and teenagers aged 13-18 can participate!</p>
+          </div>
+          <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE] hover:-translate-y-2 hover:[box-shadow:0_8px_30px_rgba(235,223,206,0.15)]">
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">what can i make?</h1>
+            <p className="text-white font-(family-name:--font-lora)">you can make any project that you like as long as gravity is the core mechanic, cc: <a className="underline hover:text-[#EBDFCE] transition-all duration-300" href="/#about">examples</a></p>
+          </div>
+          <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE] hover:-translate-y-2 hover:[box-shadow:0_8px_30px_rgba(235,223,206,0.15)]">
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">how to get the bonus prize?</h1>
+            <p className="text-white font-(family-name:--font-lora)">work for an extra three hours and get the bonus prize {`(and maaaaybe a sticker too)`}</p>
+          </div>
+          <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE] hover:-translate-y-2 hover:[box-shadow:0_8px_30px_rgba(235,223,206,0.15)]">
+            <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">how do i track hours?</h1>
+            <p className="text-white font-(family-name:--font-lora)">you can track hours in your IDE using <a className="underline hover:text-[#EBDFCE] duration-300 transition-all" href="https://hackatime.hackclub.com">hackatime</a></p>
+          </div>
         </div>
-        <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE] hover:-translate-y-2 hover:[box-shadow:0_8px_30px_rgba(235,223,206,0.15)]">
-          <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">what counts as a ship?</h1>
-          <p className="text-white font-(family-name:--font-lora)">your Ship should have a public github repo, a live playable link, downloadable binary, etc</p>
-        </div>
-        <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE] hover:-translate-y-2 hover:[box-shadow:0_8px_30px_rgba(235,223,206,0.15)]">
-          <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">who can participate?</h1>
-          <p className="text-white font-(family-name:--font-lora)">students and teenagers aged 13-18 can participate!</p>
-        </div>
-        <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE] hover:-translate-y-2 hover:[box-shadow:0_8px_30px_rgba(235,223,206,0.15)]">
-          <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">what can i make?</h1>
-          <p className="text-white font-(family-name:--font-lora)">you can make any project that you like as long as gravity is the core mechanic, cc: <a className="underline hover:text-[#EBDFCE] transition-all duration-300" href="/#about">examples</a></p>
-        </div>
-        <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE] hover:-translate-y-2 hover:[box-shadow:0_8px_30px_rgba(235,223,206,0.15)]">
-          <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">how to get the bonus prize?</h1>
-          <p className="text-white font-(family-name:--font-lora)">work for an extra three hours and get the bonus prize {`(and maaaaybe a sticker too)`}</p>
-        </div>
-        <div className="border-4 transition-all duration-300 rounded-4xl p-6 sm:p-10 hover:border-[#EBDFCE] hover:-translate-y-2 hover:[box-shadow:0_8px_30px_rgba(235,223,206,0.15)]">
-          <h1 className="text-2xl text-[#EBDFCE] sm:text-3xl mb-4 font-(family-name:--font-baumans) font-semibold">how do i track hours?</h1>
-          <p className="text-white font-(family-name:--font-lora)">you can track hours in your IDE using <a className="underline hover:text-[#EBDFCE] duration-300 transition-all" href="https://hackatime.hackclub.com">hackatime</a></p>
-        </div>
-      </div>
 
       </section>
 
