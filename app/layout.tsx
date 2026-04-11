@@ -31,15 +31,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={cn("h-full", "antialiased", outfit.variable, lora.variable, baumans.variable, "font-sans", geist.variable)}>
       <body className="min-h-full flex flex-col font-sans">
         <nav className="absolute w-full z-20 bg-transparent">
-          <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-end">
+          <div className="px-6 py-4 flex items-center justify-end">
             <div className="flex items-center gap-2">
-              <a href="/#about" className="border-[#006898] text-white bg-transparent transition-all duration-300 hover:border-[#204B65] hover:bg-[#006898] border-2  p-4 py-2 text-2xl font-(family-name:--font-lora) rounded-4xl">
+              <a href="/#about" className="border-[#006898] text-white bg-transparent transition-all duration-300 hover:border-[#204B65] hover:bg-[#006898] border-2 p-4 py-2 text-2xl font-(family-name:--font-lora) rounded-4xl">
                 about
               </a>
-              <a href="/#rewards" className="border-[#006898] text-white bg-transparent transition-all duration-300 hover:border-[#204B65] hover:bg-[#006898] border-2  p-4 py-2 text-2xl font-(family-name:--font-lora) rounded-4xl">
+              <a href="/#rewards" className="border-[#006898] text-white bg-transparent transition-all duration-300 hover:border-[#204B65] hover:bg-[#006898] border-2 p-4 py-2 text-2xl font-(family-name:--font-lora) rounded-4xl">
                 rewards
               </a>
-              <a href="/#faq" className="border-[#006898] text-white bg-transparent transition-all duration-300 hover:border-[#204B65] hover:bg-[#006898] border-2  p-4 py-2 text-2xl font-(family-name:--font-lora) rounded-4xl">
+              <a href="/#faq" className="border-[#006898] text-white bg-transparent transition-all duration-300 hover:border-[#204B65] hover:bg-[#006898] border-2 p-4 py-2 text-2xl font-(family-name:--font-lora) rounded-4xl">
                 faq
               </a>
             </div>
